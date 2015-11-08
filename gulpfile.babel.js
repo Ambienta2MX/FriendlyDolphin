@@ -123,6 +123,16 @@ gulp.task('serve:dist', () => {
   });
 });
 
+gulp.task('templates',function(){
+  return gulp.src('app/templates/**/*.hbs')
+    .pipe($.handlebars())
+    .pipe($.defineModule('plain'))
+    .pipe($.declare({
+      namespace: 'FriendlyDolphin.templates'
+    }))
+    .pipe(gulp.dest('.tmp/templates'))
+});
+
 gulp.task('serve:test', () => {
   browserSync({
     notify: false,
