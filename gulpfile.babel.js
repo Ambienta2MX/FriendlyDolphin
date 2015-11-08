@@ -1,5 +1,6 @@
 // generated on 2015-11-08 using generator-gulp-webapp 1.0.3
 import gulp from 'gulp';
+import concat from 'gulp-concat';
 import gulpLoadPlugins from 'gulp-load-plugins';
 import browserSync from 'browser-sync';
 import del from 'del';
@@ -133,7 +134,8 @@ gulp.task('templates',function(){
     .pipe($.declare({
       namespace: 'FriendlyDolphin.templates'
     }))
-    .pipe(gulp.dest('.tmp/templates'))
+    .pipe(concat('templates.js'))
+    .pipe(gulp.dest('./app/build/'))
 });
 
 gulp.task('serve:test', () => {
