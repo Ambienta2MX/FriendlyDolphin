@@ -80,6 +80,8 @@
     <script src="/bower_components/jquery-ui/jquery-ui.js"></script>
     <script src="/bower_components/d3/d3.js"></script>
     <script src="/bower_components/nvd3/build/nv.d3.js"></script>
+    <script src="/bower_components/director/build/director.js"></script>
+    <script src="/bower_components/rsvp.js/rsvp.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
     
@@ -98,15 +100,19 @@
     <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/tab.js"></script>
     <!-- endbuild -->
     
+    <!-- build:js scripts/templates.js -->
+    <script src="/build/templates.js"></script>
+    <!-- endbuild --> 
+
+    <script src="scripts/models/place.js"></script>
+    <script src="scripts/controllers/place_list_controller.js"></script>
+    <script src="scripts/views/place_list_view.js"></script>
+
     <!-- build:js scripts/main.js -->
     <script src="scripts/main.js"></script>
     <script src="scripts/plugins.js"></script>
     <script src="scripts/actions.js"></script>
     <!-- endbuild -->
-    
-    <!-- build:js scripts/templates.js -->
-    <script src="/build/templates.js"></script>
-    <!-- endbuild --> 
 
   </body>
 </html>
