@@ -114,7 +114,8 @@ gulp.task('serve', ['styles','templates','fonts','browserify'], () => {
 
   gulp.watch('app/styles/**/*.scss', ['styles']);
   gulp.watch('app/fonts/**/*', ['fonts']);
-  gulp.watch('app/templates/**/*.hbs', ['templates', reload]);
+  gulp.watch('app/templates/**/*.hbs', ['templates',reload]);
+  gulp.watch('app/scripts/**/*.js',['browserify',reload]);
   gulp.watch('bower.json', ['wiredep', 'fonts']);
 
 });
