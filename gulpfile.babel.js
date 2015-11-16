@@ -5,6 +5,8 @@ import gulpLoadPlugins from 'gulp-load-plugins';
 import browserSync from 'browser-sync';
 import del from 'del';
 import {stream as wiredep} from 'wiredep';
+import browserify from 'browserify';
+import source from 'vinyl-source-stream';
 
 const $ = gulpLoadPlugins();
 const reload = browserSync.reload;
@@ -42,7 +44,7 @@ const testLintOptions = {
 gulp.task('lint', lint('app/scripts/**/*.js'));
 gulp.task('lint:test', lint('test/spec/**/*.js', testLintOptions));
 
-gulp.task('html', ['styles','templates'], () => {
+gulp.task('html', ['styles','templates','browserify'], () => {
   const assets = $.useref.assets({searchPath: ['.tmp', 'app', '.']});
 
   return gulp.src('app/*.html')
@@ -90,7 +92,7 @@ gulp.task('extras', () => {
 
 gulp.task('clean', del.bind(null, ['.tmp', 'dist']));
 
-gulp.task('serve', ['styles','templates','fonts'], () => {
+gulp.task('serve', ['styles','templates','fonts','browserify'], () => {
   browserSync({
     notify: false,
     port: 9000,
@@ -169,6 +171,13 @@ gulp.task('wiredep', () => {
       ignorePath: /^(\.\.\/)*\.\./
     }))
     .pipe(gulp.dest('app'));
+});
+
+gulp.task('browserify',function(){
+  return browserify('./app/scripts/main.js')
+    .bundle()
+    .pipe(source('bundle.js'))
+    .pipe(gulp.dest('./app/build/'));
 });
 
 gulp.task('build', ['lint', 'html', 'images', 'fonts', 'extras'], () => {
