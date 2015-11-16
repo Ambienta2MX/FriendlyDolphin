@@ -1,4 +1,9 @@
-var PlaceListController = (function(){
+'use strict';
+
+var Place = require('../models/place');
+var PlaceListView = require('../views/place_list_view');
+
+module.exports = (function(){
 
   var list = function(params){
     Place.list({url:'https://demo7697406.mockable.io/api/fasteagle/places'}).then(success,failure); 
