@@ -1,3 +1,7 @@
+'use strict';
+
+var PlaceListController = require('./controllers/place_list_controller');
+
 var Application = (function(){
 
   var initRouter = function(){

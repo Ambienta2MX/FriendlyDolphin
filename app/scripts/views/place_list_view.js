@@ -1,4 +1,4 @@
-var PlaceListView = (function(){
+module.exports = (function(){
   var settings = {
     renderDiv:'#applicationDiv'
   };

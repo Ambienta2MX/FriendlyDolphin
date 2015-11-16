@@ -55,3 +55,5 @@ var Place = {
   }
 
 };
+
+module.exports = Place;
