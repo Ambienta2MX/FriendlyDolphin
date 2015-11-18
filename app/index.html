@@ -53,6 +53,7 @@
           <li class="xn-search">
             <form name="searchForm" lpformnum="3" role="form">
               <input name="name" placeholder="Localidad..." type="text">
+              <input name="max" type="hidden" value="100">
             </form>
           </li>       
         </ul>
@@ -63,23 +64,14 @@
         
         <div id="applicationDiv">
           <!-- ApplicationDiv --> 
-
         </div>
 
       </div>
     </div>
     
-    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
-    <script>
-      (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
-      function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
-      e=o.createElement(i);r=o.getElementsByTagName(i)[0];
-      e.src='https://www.google-analytics.com/analytics.js';
-      r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
-      ga('create','UA-XXXXX-X');ga('send','pageview');
-    </script>
-
     <!-- build:js scripts/vendor.js -->
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCTgfEzFgbGcPezbHPOCcOD15wU6r1fGto&libraries=visualization&sensor=false">
+    </script>
     <!-- bower:js -->
     <script src="/bower_components/jquery/dist/jquery.js"></script>
     <script src="/bower_components/handlebars/handlebars.js"></script>
