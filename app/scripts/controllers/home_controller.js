@@ -19,6 +19,7 @@ module.exports = (function(){
     var placeInformation = getInformationFromPlace(data);    
     WeatherMapView.render(placeInformation);
     drawHeatMap(data);
+    getTemperatureChart(data);
   };
   
   var failure = function(data){
@@ -80,6 +81,42 @@ module.exports = (function(){
 
     return basicInformation;
   };
+
+  var getTemperatureChart = function(data) {
+    var ctx = document.getElementById("weatherChart").getContext("2d");
+    var chartOptions = {
+      scaleBeginAtZero : true,
+      scaleShowGridLines : false,
+      scaleGridLineColor : "rgba(0,0,0,.05)",
+      scaleGridLineWidth : 1,
+      scaleShowHorizontalLines: false,
+      scaleShowVerticalLines: false,
+      barShowStroke : true,
+      animation: false,
+    }
+    var temperatureData = {
+        labels: [],
+        datasets: []
+    };
+    var dataSetContent = {
+        fillColor: "rgba(220,220,220,0.5)",
+        strokeColor: "rgba(220,220,220,0.8)",
+        highlightFill: "rgba(220,220,220,0.75)",
+        highlightStroke: "rgba(220,220,220,1)",
+        data: []
+    };
+    console.log(data.weathers.length);
+    console.log(data.weathers.length);
+    console.log(data.weathers.length);
+    for(var i=0; i < data.weathers.length; i++) {
+      temperatureData.labels.push("");
+      dataSetContent.data.push(data.weathers[i].temperature);
+    }
+
+    temperatureData.datasets.push(dataSetContent);
+    
+    var myBarChart = new Chart(ctx).Bar(temperatureData, chartOptions);
+  }
 
   var start = function(){
     bindEvents();
