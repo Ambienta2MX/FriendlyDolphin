@@ -23,7 +23,8 @@ module.exports = (function(){
   };
   
   var failure = function(data){
-    console.log("Error : " + data);
+    console.error("Error");
+    console.error(data);
   };
 
   var bindEvents = function(){
@@ -105,9 +106,6 @@ module.exports = (function(){
         highlightStroke: "rgba(220,220,220,1)",
         data: []
     };
-    console.log(data.weathers.length);
-    console.log(data.weathers.length);
-    console.log(data.weathers.length);
     for(var i=0; i < data.weathers.length; i++) {
       temperatureData.labels.push("");
       dataSetContent.data.push(data.weathers[i].temperature);
@@ -119,8 +117,7 @@ module.exports = (function(){
   }
 
   var start = function(){
-    bindEvents();
-    console.log("Home controller");    
+    bindEvents();    
   };
 
   return{
