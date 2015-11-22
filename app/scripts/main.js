@@ -1,6 +1,6 @@
 'use strict';
 
-var PlaceListController = require('./controllers/place_list_controller');
+var WeatherController = require('./controllers/weather_controller');
 var HomeController = require('./controllers/home_controller');
 
 var Application = (function(){
@@ -10,8 +10,8 @@ var Application = (function(){
       '/':{
         on:HomeController.start
       },
-      '/places':{
-        on:PlaceListController.start
+      '/weather':{
+        on:WeatherController.start
       }
     }).configure({recurse:'backward'});
 
