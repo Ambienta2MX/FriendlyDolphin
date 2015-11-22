@@ -1,24 +1,35 @@
 'use strict';
 
 var Weather = require('../models/weather');
-var WeatherMapView = require('../views/weather_map_view');
+var WeatherView = require('../views/weather_view');
 var MapsConf = require('../conf/maps_coordinates');
 
 module.exports = (function(){
   
+  var WeatherConf = {
+    url: 'http://localhost/api/hardant/weather'
+  }
+
   var selectors = {
-    searchForm:'form[name=searchForm]',
-    searchInput:'input[name=search]'
+    searchForm:'form[name=byTown]',
+    searchInput:'input[name=search]',
+    latitudeSelector: "input[name=latitude]",
+    longitudeSelector: "input[name=longitude]"
   };  
 
   var searchWeatherByName = function(event){
     event.preventDefault(); 
-    Weather.get({url:'http://localhost/api/hardant/weather',data:$(this).serialize()}).then(success,failure);
+    Weather.get({url: WeatherConf.url ,data:$(this).serialize()}).then(success,failure);
+  };
+
+  var getWeatherByTown = function (event) {
+    event.preventDefault();
+    Weather.get({url:WeatherConf.url, data: $(this).serialize()}).then(success, failure);
   };
 
   var success = function(data){
     var placeInformation = getInformationFromPlace(data);    
-    WeatherMapView.render(placeInformation);
+    WeatherView.render(placeInformation);
     drawHeatMap(data);
     getTemperatureChart(data);
   };
@@ -30,6 +41,45 @@ module.exports = (function(){
 
   var bindEvents = function(){
     $(selectors.searchForm).on('submit',searchWeatherByName); 
+  };
+
+  var drawMap = function (){
+    var map = new google.maps.Map(document.getElementById('map'),{
+        zoom: 10,
+        center: {lat: 19.45, lng: -99},
+        maxZoom: 13,
+        minZoom: 8, 
+        streetViewControl: false, 
+        mapTypeId: google.maps.MapTypeId.HYBRID
+      });
+    var flightPlanCoordinates_DF = MapsConf.DF_Coordinates;
+
+    var flightPath2 = new google.maps.Polyline({
+      path: flightPlanCoordinates_DF,
+      geodesic: true,
+      strokeColor: '#E0FFFF',
+      strokeOpacity: 1.0,
+      strokeWeight: 2
+    });
+
+    flightPath2.setMap(map);
+
+    var currentMarker = new google.maps.Marker({
+      position: {lat: 19.381836, lng: -99.1372371},
+      map: map,
+      title: 'Latitud/Longitud',
+      draggable: true
+    });
+
+    google.maps.event.addListener(currentMarker, 'dragend', function(evt){
+        $(selectors.latitudeSelector).val(evt.latLng.lat().toFixed(3));
+        $(selectors.longitudeSelector).val(evt.latLng.lng().toFixed(3));
+    });
+
+    google.maps.event.addListener(currentMarker, 'dragstart', function(evt){
+        console.log("moving marker!");
+    });
+
   };
 
   var drawHeatMap = function (data) {
@@ -131,7 +181,10 @@ module.exports = (function(){
   }
 
   var start = function(){
-    bindEvents();    
+    //bindEvents();
+    WeatherView.render();
+    drawMap();
+
   };
 
   return{
