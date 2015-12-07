@@ -7,6 +7,8 @@ import del from 'del';
 import {stream as wiredep} from 'wiredep';
 import browserify from 'browserify';
 import source from 'vinyl-source-stream';
+import preprocess from 'gulp-preprocess';
+import yargs from 'yargs';
 
 const $ = gulpLoadPlugins();
 const reload = browserSync.reload;
@@ -181,10 +183,16 @@ gulp.task('browserify',function(){
     .pipe(gulp.dest('./app/build/'));
 });
 
-gulp.task('build', ['lint', 'html', 'images', 'fonts', 'extras'], () => {
+gulp.task('build', ['html','images', 'fonts', 'extras'], () => {
   return gulp.src('dist/**/*').pipe($.size({title: 'build', gzip: true}));
 });
 
 gulp.task('default', ['clean'], () => {
   gulp.start('build');
+});
+
+gulp.task('configuration',() => {
+  gulp.src(process.env.HOME+'/.ambienta2mx/config.js')
+  .pipe(preprocess({context:{ ENVIRONMENT:(yargs.argv.env||'dev') } })) 
+  .pipe(gulp.dest('./app/scripts/conf'));
 });
