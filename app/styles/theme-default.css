@@ -7343,3 +7343,15 @@ li.ext_zip {
     background-size: 220px 50px;
   }
 }
+#map {
+  display: block;
+  width: 100%;
+  height: 400px;
+}
+#charts {
+  display:block;
+}
+#applicationDiv {
+  width: 100%;
+  height: 80%; 
+}
