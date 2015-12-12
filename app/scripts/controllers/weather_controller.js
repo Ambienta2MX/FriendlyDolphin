@@ -3,11 +3,12 @@
 var Weather = require('../models/weather');
 var WeatherView = require('../views/weather_view');
 var MapsConf = require('../conf/maps_coordinates');
+var Config = require('../conf/config');
 
 module.exports = (function(){
   
   var WeatherConf = {
-    url: 'http://localhost/api/hardant/weather'
+    url:  Config.hardAntWeather.concat('/weather')
   }
 
   var selectors = {

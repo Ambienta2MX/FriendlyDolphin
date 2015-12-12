@@ -46,7 +46,7 @@ const testLintOptions = {
 gulp.task('lint', lint('app/scripts/**/*.js'));
 gulp.task('lint:test', lint('test/spec/**/*.js', testLintOptions));
 
-gulp.task('html', ['styles','templates','browserify'], () => {
+gulp.task('html', ['styles','templates','browserify','configuration'], () => {
   const assets = $.useref.assets({searchPath: ['.tmp', 'app', '.']});
 
   return gulp.src('app/*.html')
@@ -94,7 +94,7 @@ gulp.task('extras', () => {
 
 gulp.task('clean', del.bind(null, ['.tmp', 'dist']));
 
-gulp.task('serve', ['styles','templates','fonts','browserify'], () => {
+gulp.task('serve', ['styles','templates','fonts','browserify','configuration'], () => {
   browserSync({
     notify: false,
     port: 9000,
