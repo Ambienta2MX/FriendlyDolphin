@@ -3,6 +3,7 @@
 var Weather = require('../models/weather');
 var WeatherMapView = require('../views/weather_map_view');
 var MapsConf = require('../conf/maps_coordinates');
+var Config =  require('../conf/config');
 
 module.exports = (function(){
   
@@ -13,7 +14,8 @@ module.exports = (function(){
 
   var searchWeatherByName = function(event){
     event.preventDefault(); 
-    Weather.get({url:'http://localhost/api/hardant/weather',data:$(this).serialize()}).then(success,failure);
+    Weather.get({url:Config.hardAntWeather.concat('/weather'),
+                 data:$(this).serialize()}).then(success,failure);
   };
 
   var success = function(data){
