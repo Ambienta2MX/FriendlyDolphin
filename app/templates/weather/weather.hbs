@@ -1,10 +1,10 @@
 <div class="admin-form">
   <div class="panel">
     <div class="panel-body bg-light">
-      <form class="form-horizontal" role="form">
+      <form class="form-horizontal" id="byLatLng" name="byLatLng" >
         <div class="form-group">
-          <label for="town" class="col-lg-3 control-label">Delegación</label>
-          <div class="col-lg-8">
+          <label for="town" class="col-lg-3 col-md-2 col-sm-2 col-xs-12 control-label">Delegación</label>
+          <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
             <div class="bs-component">
               <select class="form-control" name="town">
                 <option value="0" selected="selected"> --Seleccionar-- </option>
@@ -30,30 +30,38 @@
         </div>
 
         <div class="form-group">
-          <label class="col-lg-3 control-label">Latitud:</label>
-          <div class="col-lg-2">
-            <label class="control-label">
+          <label class="col-lg-3 col-md-2 col-sm-2 col-xs-4 control-label">Latitud:</label>
+          <div class="col-lg-2 col-md-2 col-sm-2 col-xs-8">
+            <label class="control-label"> 
               <b class="text-latitude"></b>
             </label>
-            <!-- <input type="text" name="latitude" value="0" disabled> -->
           </div>
-          <label class="col-lg-1 control-label">Longitud:</label>
-          <div class="col-lg-2">
+          <input type="hidden" name="latitude" value="0" />
+        </div>
+
+        <div class="form-group">
+          <label class="col-lg-3 col-md-2 col-sm-2 col-xs-4 control-label">Longitud:</label>
+          <div class="col-lg-2 col-md-2 col-sm-2 col-xs-8">
             <label class="control-label">
               <b class="text-longitude"></b>
             </label>
-            <!-- <input type="text" name="longitude" value="0" disabled> -->
           </div>
+          <input type="hidden" name="longitude" value="0" />
         </div>
         
         <div class="form-group">
-          <label class="col-lg-3 control-label">Radio de búsqueda (metros):</label>
-          <div class="col-lg-3">
-            <div class="input-group">
+          <label class="col-lg-3 col-md-2 col-sm-2 col-xs-12 control-label">Radio de búsqueda (metros):</label>
+          <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+            <div class="bs-component">
               <input name="distance" class="form-control ui-spinner-input" type="number" />
             </div>
           </div>
         </div>
+
+        <div class="text-right">
+          <input type="submit" class="button btn-primary" value="Buscar"></input>
+        </div>
+
       </form>
     </div>
   </div>
@@ -79,4 +87,3 @@
     
   </div>
 </div>
-

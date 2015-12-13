@@ -1873,6 +1873,39 @@ var DF_Coordinates = [
       {lat: 19.57365, lng: -99.11318},
       {lat: 19.56847, lng: -99.11201},
       {lat: 19.56448, lng: -99.10835}];
+var createMap = function () {
+      var map = new google.maps.Map(document.getElementById('map'),{
+        zoom: 10,
+        center: {lat: 19.381836, lng: -99.1372371},
+        maxZoom: 13,
+        minZoom: 8, 
+        streetViewControl: false, 
+        mapTypeId: google.maps.MapTypeId.HYBRID
+      });
+      var flightPlanCoordinates_DF = DF_Coordinates;
+
+      var flightPath2 = new google.maps.Polyline({
+        path: flightPlanCoordinates_DF,
+        geodesic: true,
+        strokeColor: '#E0FFFF',
+        strokeOpacity: 1.0,
+        strokeWeight: 2
+      });
+
+      flightPath2.setMap(map);
+
+      return map;
+};
+var createMapHeatMap = function (heatmapData){
+      var heatmap = new google.maps.visualization.HeatmapLayer({
+            data: heatmapData
+      });
+      heatmap.setMap(null);
+      return heatmap;
+};
+
 module.exports = {
-	DF_Coordinates: DF_Coordinates	
+	DF_Coordinates: DF_Coordinates,
+      createMap: createMap,
+      createMapHeatMap: createMapHeatMap
 };
