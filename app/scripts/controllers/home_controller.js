@@ -2,7 +2,7 @@
 
 var Weather = require('../models/weather');
 var WeatherMapView = require('../views/weather_map_view');
-var MapsConf = require('../conf/maps_coordinates');
+//var MapsConf = require('../conf/maps_coordinates');
 var Config =  require('../conf/config');
 
 module.exports = (function(){
@@ -28,10 +28,10 @@ module.exports = (function(){
   };
 
   var success = function(data){
-    var placeInformation = getInformationFromPlace(data);    
-    WeatherMapView.render(placeInformation);
-    drawHeatMap(data);
-    getTemperatureChart(data);
+    //var placeInformation = getInformationFromPlace(data);    
+    //WeatherMapView.render(placeInformation);
+    //drawHeatMap(data);
+    //getTemperatureChart(data);
   };
   
   var failure = function(data){
@@ -104,51 +104,50 @@ module.exports = (function(){
     $(selectors.leftMenu).on('click',leftMenuToggle);
   };
 
-  var drawHeatMap = function (data) {
-    /*TODO refactor!*/
-    var strictBounds = new google.maps.LatLngBounds(
-          new google.maps.LatLng(19.600237, -99.403214), 
-          new google.maps.LatLng(19.222031, -98.941788)),
-        distritoFederal = new google.maps.LatLng(19.381836, -99.1372371),
-        map = new google.maps.Map(document.getElementById('map'),{
-          zoom: 10,
-          center: {lat: 19.45, lng: -99},
-          maxZoom: 13,
-          minZoom: 8, 
-          streetViewControl: false, 
-          mapTypeId: google.maps.MapTypeId.HYBRID
-        }),
-        heatmapData = [],
-        coordinates;
-    for(var i=0; i < data.weathers.length; i++) {
-      coordinates = data.weathers[i].location.coordinates;
-      var googleMapsPoint = new google.maps.LatLng(coordinates[1], coordinates[0]);
-      heatmapData.push(googleMapsPoint);
-    }
+  //var drawHeatMap = function (data) {
+  //  var strictBounds = new google.maps.LatLngBounds(
+  //        new google.maps.LatLng(19.600237, -99.403214), 
+  //        new google.maps.LatLng(19.222031, -98.941788)),
+  //      distritoFederal = new google.maps.LatLng(19.381836, -99.1372371),
+  //      map = new google.maps.Map(document.getElementById('map'),{
+  //        zoom: 10,
+  //        center: {lat: 19.45, lng: -99},
+  //        maxZoom: 13,
+  //        minZoom: 8, 
+  //        streetViewControl: false, 
+  //        mapTypeId: google.maps.MapTypeId.HYBRID
+  //      }),
+  //      heatmapData = [],
+  //      coordinates;
+  //  for(var i=0; i < data.weathers.length; i++) {
+  //    coordinates = data.weathers[i].location.coordinates;
+  //    var googleMapsPoint = new google.maps.LatLng(coordinates[1], coordinates[0]);
+  //    heatmapData.push(googleMapsPoint);
+  //  }
 
-    var heatmap = new google.maps.visualization.HeatmapLayer({
-      data: heatmapData
-    });
+  //  var heatmap = new google.maps.visualization.HeatmapLayer({
+  //    data: heatmapData
+  //  });
 
-    heatmap.setMap(map);
+  //  heatmap.setMap(map);
 
-    var flightPlanCoordinates_DF = MapsConf.DF_Coordinates;
+  //  var flightPlanCoordinates_DF = MapsConf.DF_Coordinates;
 
-    var flightPath2 = new google.maps.Polyline({
-      path: flightPlanCoordinates_DF,
-      geodesic: true,
-      strokeColor: '#E0FFFF',
-      strokeOpacity: 1.0,
-      strokeWeight: 2
-    });
+  //  var flightPath2 = new google.maps.Polyline({
+  //    path: flightPlanCoordinates_DF,
+  //    geodesic: true,
+  //    strokeColor: '#E0FFFF',
+  //    strokeOpacity: 1.0,
+  //    strokeWeight: 2
+  //  });
 
-    flightPath2.setMap(map);
-    heatmap.set('radius', 40);
+  //  flightPath2.setMap(map);
+  //  heatmap.set('radius', 40);
 
-    google.maps.event.addListener(map, 'zoom_changed', function() {
-     if (map.getZoom() < minZoomLevel) map.setZoom(minZoomLevel);
-    });
-  };
+  //  google.maps.event.addListener(map, 'zoom_changed', function() {
+  //   if (map.getZoom() < minZoomLevel) map.setZoom(minZoomLevel);
+  //  });
+  //};
 
   var getInformationFromPlace = function (data) {
     var basicInformation = {},
