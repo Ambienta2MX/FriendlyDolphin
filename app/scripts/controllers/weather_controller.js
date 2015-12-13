@@ -14,8 +14,8 @@ module.exports = (function(){
   var selectors = {
     searchForm:'form[name=byTown]',
     searchInput:'input[name=search]',
-    latitudeSelector: "input[name=latitude]",
-    longitudeSelector: "input[name=longitude]"
+    latitudeSelector: ".text-latitude",
+    longitudeSelector: ".text-longitude"
   };  
 
   var searchWeatherByName = function(event){
@@ -73,8 +73,8 @@ module.exports = (function(){
     });
 
     google.maps.event.addListener(currentMarker, 'dragend', function(evt){
-        $(selectors.latitudeSelector).val(evt.latLng.lat().toFixed(3));
-        $(selectors.longitudeSelector).val(evt.latLng.lng().toFixed(3));
+        $(selectors.latitudeSelector).text(evt.latLng.lat().toFixed(3));
+        $(selectors.longitudeSelector).text(evt.latLng.lng().toFixed(3));
     });
 
     google.maps.event.addListener(currentMarker, 'dragstart', function(evt){
