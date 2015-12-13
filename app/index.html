@@ -2,9 +2,11 @@
 <html class="no-js" lang="">
   <head>
     <meta charset="utf-8">
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Ambienta2MX</title>
+    <meta name="keywords" content="Ambienta2MX Weather Pollution" />
+    <meta name="description" content="Ambienta2MX">
+    <meta name="author" content="AdminDesigns">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
     <!-- Place favicon.ico in the root directory -->
@@ -22,52 +24,86 @@
     <!-- build:js scripts/vendor/modernizr.js -->
     <script src="/bower_components/modernizr/modernizr.js"></script>
     <!-- endbuild -->
+
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCTgfEzFgbGcPezbHPOCcOD15wU6r1fGto&libraries=visualization&sensor=false"></script>
   </head>
   <body>
     <!--[if lt IE 10]>
       <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
-    <div class="page-container">
-      <div class="page-sidebar">
-        <ul class="x-navigation">
-          <li class="xn-title">Friendly Dolphin</li><!-- Navigation title -->
+    <header class="navbar navbar-fixed-top navbar-shadow bg-dark">
+      <div class="navbar-branding dark bg-dark">
+        <a class="navbar-brand" href="dashboard.html"><b>Friendly Dolphin</b></a>
+        <span id="toggle_sidemenu_l" class="ad ad-lines"></span>
+      </div>
+
+      <form class="navbar-form navbar-left navbar-search alt" role="search">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Buscar.." value="" />
+        </div>
+      </form>
+    </header> 
+
+    <aside id="sidebar_left" class="nano nano-light affix">
+      <div class="sidebar-left-content nano-content">
+       <ul class="nav sidebar-menu">
           <li>
-            <a href="#">
-              <span class="fa fa-desktop"></span>
-              <span class="xn-text">Dashboard</span>
+            <a class="accordion-toggle" href="#">
+              <span class="glyphicon glyphicon-book"></span>
+
+              <span class="sidebar-title">Consultas</span>
+              <span class="caret"></span>
             </a>
-          </li>
-          <li class="xn-openable">
-            <a href="#"><span class="fa fa-pencil"></span> <span class="xn-text">Consultas</span></a>
-            <ul>
-              <li><a href="#/weather"><span class="fa fa-sun-o"></span> Clima</a></li>
-              <li><a href="#"><span class="fa fa-cloud"></span> Contaminación</a></li>
+            <ul class="nav sub-nav">
+              <li>
+                <a href="#/weather">
+                  <span class="fa fa-sun-o"></span>
+                    Clima 
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <span class="fa fa fa-cloud"></span>
+                    Contaminación 
+                </a> 
+              </li>
             </ul>
           </li>
-        </ul>
-      </div> 
-
-      <div class="page-content">
-        <ul class="x-navigation x-navigation-horizontal x-navigation-panel">
-          <li class="xn-search">
-            <form name="searchForm" lpformnum="3" role="form">
-              <input name="name" placeholder="Localidad..." type="text">
-              <input name="max" type="hidden" value="100">
-              <input name="strict" type="hidden" value="true">
-            </form>
-          </li>       
-        </ul>
-        <div class="progress progress-small"><!-- progressbar -->
-          <div class="progress-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%;"></div>
-        </div><!-- ./progressbar -->
-        <noscript><i>Javascript required</i></noscript>
-        
-        <div id="applicationDiv">
-          <!-- ApplicationDiv --> 
-        </div>
+        </ul> 
       </div>
-    </div>
+    </aside><!--ENDOF ASIDE -->
+    
+    <section id="content_wrapper">
+      <header id="topbar" class="alt">
+        <div class="topbar-left">
+          <ol class="breadcrumb">
+            <li class="crumb-active">
+              <a href="dashboard.html">Home</a>
+            </li>
+            
+            <li class="crumb-link">
+              <a href="index.html">Dashboard</a>
+            </li>
+          </ol>
+        </div>
+      </header>
+      
+      <section id="content" class="table-layout animated fadeIn">
+        <div class="panel invoice-panel">
+          <div class="panel-heading">
+            <span class="panel-title">
+            </span>
+          </div>
+          <div class="panel-body p20" id="invoice-item">
+            <div class="row">
+              <div class="col-lg-12" id="applicationDiv">
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </section>
     
     <!-- build:js scripts/vendor.js -->
     <!-- bower:js -->
@@ -83,18 +119,6 @@
     <!-- endbuild -->
     
     <!-- build:js scripts/plugins.js -->
-    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/affix.js"></script>
-    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/alert.js"></script>
-    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/dropdown.js"></script>
-    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/tooltip.js"></script>
-    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/modal.js"></script>
-    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/transition.js"></script>
-    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/button.js"></script>
-    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/popover.js"></script>
-    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/carousel.js"></script>
-    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/scrollspy.js"></script>
-    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/collapse.js"></script>
-    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/tab.js"></script>
     <!-- endbuild -->
     
     <!-- build:js scripts/templates.js -->
@@ -103,8 +127,6 @@
 
     <!-- build:js scripts/main.js -->
     <script src="/build/bundle.js"></script>
-    <script src="scripts/plugins.js"></script>
-    <script src="scripts/actions.js"></script>
     <!-- endbuild -->
 
   </body>
