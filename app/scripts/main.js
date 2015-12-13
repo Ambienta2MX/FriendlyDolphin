@@ -7,9 +7,6 @@ var Application = (function(){
 
   var initRouter = function(){
     var router = new Router({
-      '/':{
-        on:HomeController.start
-      },
       '/weather':{
         on:WeatherController.start
       }
@@ -19,6 +16,7 @@ var Application = (function(){
   };
   
   var start = function(){
+    HomeController.start();
     initRouter(); 
   };
 
