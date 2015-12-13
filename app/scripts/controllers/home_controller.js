@@ -16,9 +16,9 @@ module.exports = (function(){
   };
   
   var options = {
-    sbl: "sb-l-o",
-    sbr: "sb-r-c",
-    collapse: "sb-l-m"
+    sbl: 'sb-r-o',
+    sbr: 'sb-r-c',
+    collapse: 'sb-l-m'
   };
 
   var searchWeatherByName = function(event){
@@ -40,15 +40,29 @@ module.exports = (function(){
   };
   
   var sidebarLeftToggle = function(){
-    if ($('body.sb-top').length) { return; }
-
-    if ($(selectors.body).hasClass('sb-l-c') && options.collapse === "sb-l-m") {
-      $(selectors.body).removeClass('sb-l-c');
+    if($('body.sb-top').length) { return; }   
+         
+    if($(selectors.body).hasClass('sb-r-c') && options.collapse === "sb-l-m"){
+      $(selectors.body).removeClass('sb-r-c');
     }
-    
-    $(selectors.body).toggleClass(options.collapse).removeClass(options.sbl).addClass(options.sbr);
+
+    $(selectors.body).toggleClass(options.collapse).removeClass('sb-r-o').addClass('sb-r-c');
+    triggerResize();
   };
   
+  var triggerResize = function() {
+    setTimeout(function() {
+      $(window).trigger('resize');
+
+      if($(selectors.body).hasClass('sb-l-m')) {
+        $(selectors.body).addClass('sb-l-disable-animation');
+      }
+      else {
+        $(selectors.body).removeClass('sb-l-disable-animation');
+      }
+    }, 300);
+  };
+
   var leftMenuToggle = function(event){
     event.preventDefault(); 
     if ($(selectors.body).hasClass('sb-l-m') && !$(this).parents('ul.sub-nav').length) { return; }
