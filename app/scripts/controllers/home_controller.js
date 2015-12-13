@@ -9,12 +9,21 @@ module.exports = (function(){
   
   var selectors = {
     searchForm:'form[name=searchForm]',
-    searchInput:'input[name=search]'
-  };  
+    searchInput:'input[name=search]',
+    body:'body',
+    leftToggleButton:'#toggle_sidemenu_l',
+    leftMenu:'.sidebar-menu li a.accordion-toggle'
+  };
+  
+  var options = {
+    sbl: "sb-l-o",
+    sbr: "sb-r-c",
+    collapse: "sb-l-m"
+  };
 
   var searchWeatherByName = function(event){
     event.preventDefault(); 
-    Weather.get({url:Config.hardAntWeather.concat('/weather'),
+    Weather.get({url:Config.hardAntUrl.concat('/weather'),
                  data:$(this).serialize()}).then(success,failure);
   };
 
@@ -29,9 +38,56 @@ module.exports = (function(){
     console.error("Error");
     console.error(data);
   };
+  
+  var sidebarLeftToggle = function(){
+    if ($('body.sb-top').length) { return; }
+
+    if ($(selectors.body).hasClass('sb-l-c') && options.collapse === "sb-l-m") {
+      $(selectors.body).removeClass('sb-l-c');
+    }
+    
+    $(selectors.body).toggleClass(options.collapse).removeClass(options.sbl).addClass(options.sbr);
+  };
+  
+  var leftMenuToggle = function(event){
+    event.preventDefault(); 
+    if ($(selectors.body).hasClass('sb-l-m') && !$(this).parents('ul.sub-nav').length) { return; }
+
+    if (!$(this).parents('ul.sub-nav').length) {
+
+      if ($(window).width() > 900) {
+        if ($('body.sb-top').length) { return; }
+      }
+
+      $('a.accordion-toggle.menu-open').next('ul').slideUp('fast', 'swing', function() {
+        $(this).attr('style', '').prev().removeClass('menu-open');
+      });
+    }
+    else {
+      var activeMenu = $(this).next('ul.sub-nav');
+      var siblingMenu = $(this).parent().siblings('li').children('a.accordion-toggle.menu-open').next('ul.sub-nav')
+
+      activeMenu.slideUp('fast', 'swing', function() {
+        $(this).attr('style', '').prev().removeClass('menu-open');
+      });
+
+      siblingMenu.slideUp('fast', 'swing', function() {
+        $(this).attr('style', '').prev().removeClass('menu-open');
+      });
+    }
+
+    if (!$(this).hasClass('menu-open')) {
+      $(this).next('ul').slideToggle('fast', 'swing', function() {
+        $(this).attr('style', '').prev().toggleClass('menu-open');
+      });
+    }
+
+  };
 
   var bindEvents = function(){
-    $(selectors.searchForm).on('submit',searchWeatherByName); 
+    //$(selectors.searchForm).on('submit',searchWeatherByName); 
+    $(selectors.leftToggleButton).on('click',sidebarLeftToggle);
+    $(selectors.leftMenu).on('click',leftMenuToggle);
   };
 
   var drawHeatMap = function (data) {

@@ -8,7 +8,7 @@ var Config = require('../conf/config');
 module.exports = (function(){
   
   var WeatherConf = {
-    url:Config.hardAntWeather.concat('/weather')
+    url:Config.hardAntUrl.concat('/weather')
   }
 
   var selectors = {
