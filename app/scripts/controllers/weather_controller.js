@@ -2,13 +2,16 @@
 
 var Weather = require('../models/weather');
 var WeatherView = require('../views/weather_view');
+var WeatherInfoView = require('../views/weather_info_view');
 var MapsManagement = require('../conf/maps_management');
 var Config = require('../conf/config');
 
 module.exports = (function(){
   
   var WeatherConf = {
-    url:Config.hardAntUrl.concat('/weather')
+    url:Config.smartOwlUrl.concat('/weather'),
+    initialLatitude:19.381836,
+    initialLongitude:-99.1372371
   }
 
   var selectors = {
@@ -18,6 +21,15 @@ module.exports = (function(){
     latitudeSelector: ".text-latitude",
     longitudeSelector: ".text-longitude"
   };  
+
+  var showWeatherInfoModal = function(){
+    $.magnificPopup.open({
+      removalDelay:500,
+      items:{
+        src:"#modal-panel" 
+      }
+    });
+  };
 
   var searchWeatherByName = function(event){
     event.preventDefault(); 
@@ -30,10 +42,16 @@ module.exports = (function(){
   };
 
   var success = function(data){
-    var placeInformation = getInformationFromPlace(data);    
-    WeatherView.render(placeInformation);
-    drawHeatMap(data);
-    getTemperatureChart(data);
+    WeatherInfoView.render(data);
+    var lista = [];
+    lista.push(data); 
+    console.log(data);
+    drawHeatMap(lista);
+    showWeatherInfoModal();
+
+    /*WeatherView.render(placeInformation);*/
+    /*drawHeatMap(data);
+    getTemperatureChart(data);*/
   };
   
   var failure = function(data){
@@ -47,6 +65,11 @@ module.exports = (function(){
 
   var drawMap = function (){
     window.globalMap = MapsManagement.createMap();
+
+    $(selectors.latitudeSelector).text(WeatherConf.initialLatitude);
+    $(selectors.longitudeSelector).text(WeatherConf.initialLongitude);
+    $(selectors.latitudeInput).val(WeatherConf.initialLatitude);
+    $(selectors.longitudeInput).val(WeatherConf.initialLongitude);
 
     var currentMarker = new google.maps.Marker({
       position: {lat: 19.381836, lng: -99.1372371},
@@ -68,8 +91,8 @@ module.exports = (function(){
     window.globalMap = MapsManagement.createMap();
     var heatmapData = [],
         coordinates;
-    for(var i=0; i < data.weathers.length; i++) {
-      coordinates = data.weathers[i].location.coordinates;
+    for(var i=0; i < data.length; i++) {
+      coordinates = data[i].location.coordinates;
       var googleMapsPoint = new google.maps.LatLng(coordinates[1], coordinates[0]);
       heatmapData.push(googleMapsPoint);
     }
@@ -83,21 +106,21 @@ module.exports = (function(){
 
   var getInformationFromPlace = function (data) {
     var basicInformation = {},
-        maxTemperature = "",
-        minTemperature = "",
-        averageTemperature = "";
-
+    maxTemperature = "",
+    minTemperature = "",
+    averageTemperature = "";
+    
     maxTemperature = "" + Math.max.apply(Math,data.weathers.map(function(element){return element.temperature;}));
     minTemperature = "" + Math.min.apply(Math,data.weathers.map(function(element){return element.temperature;}));
     averageTemperature = "" + data.weathers.map(function(obj) {return obj.temperature})
       .reduce(function(a, b) { return a + b }) / data.weathers.length;
-
+    
     basicInformation.place = data.weathers[0].fullName;
     basicInformation.maxTemperature = maxTemperature.substring(maxTemperature.indexOf(".") - 3, maxTemperature.indexOf(".") + 3);
     basicInformation.minTemperature = minTemperature.substring(minTemperature.indexOf(".") - 3, minTemperature.indexOf(".") + 3);
     basicInformation.averageTemperature = averageTemperature.substring(minTemperature.indexOf(".") - 3, minTemperature.indexOf(".") + 3);
-
-    return basicInformation;    
+    
+    return basicInformation;
   };
 
   var getTemperatureChart = function(data) {
