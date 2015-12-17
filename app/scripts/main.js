@@ -1,6 +1,7 @@
 'use strict';
 
 var WeatherController = require('./controllers/weather_controller');
+var WeatherQueryController = require('./controllers/weather_query_controller');
 var HomeController = require('./controllers/home_controller');
 
 var Application = (function(){
@@ -9,6 +10,9 @@ var Application = (function(){
     var router = new Router({
       '/weather':{
         on:WeatherController.start
+      },
+      '/weatherQuery':{
+        on:WeatherQueryController.start
       }
     }).configure({recurse:'backward'});
 
