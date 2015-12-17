@@ -49,6 +49,31 @@ var Weather = {
         reject(response); 
       });
     });
+  },
+
+  list:function(params){
+    return new RSVP.Promise(function(resolve,reject){
+      $.ajax({
+        url:params.url,
+        type:'GET',
+        data:params.data,
+        datatype:'json',
+        crossDomain:true,
+        mozSystem: true
+      })
+      .done(function(response){
+        var model = {weathers:[]};
+        response.forEach(function(item){
+          var weather = Weather.deserialize({weather:item}); 
+          model.weathers.push(weather);
+        });
+        resolve(model); 
+      })
+      .fail(function(response){
+        reject(response);
+      });
+
+    });
   }
 };
 
