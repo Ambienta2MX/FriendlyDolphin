@@ -48,7 +48,6 @@ module.exports = (function(){
     console.log(data);
     drawHeatMap(lista);
     showWeatherInfoModal();
-
     /*WeatherView.render(placeInformation);*/
     /*drawHeatMap(data);
     getTemperatureChart(data);*/

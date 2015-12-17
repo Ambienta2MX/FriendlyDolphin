@@ -3,6 +3,7 @@
 var WeatherController = require('./controllers/weather_controller');
 var WeatherQueryController = require('./controllers/weather_query_controller');
 var HomeController = require('./controllers/home_controller');
+var PollutionController = require('./controllers/pollution_controller');
 
 var Application = (function(){
 
@@ -13,6 +14,9 @@ var Application = (function(){
       },
       '/weatherQuery':{
         on:WeatherQueryController.start
+      },
+      '/pollution':{
+        on:PollutionController.start
       }
     }).configure({recurse:'backward'});
 

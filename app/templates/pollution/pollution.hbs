@@ -1,0 +1,63 @@
+<div class="admin-form">
+  <div class="panel">
+    <div class="panel-body bg-light">
+      <form class="form-horizontal" id="byLatLng" name="byLatLng" >
+        <div class="form-group">
+          <label class="col-lg-3 col-md-2 col-sm-2 col-xs-4 control-label">Latitud:</label>
+          <div class="col-lg-2 col-md-2 col-sm-2 col-xs-8">
+            <label class="control-label"> 
+              <b class="text-latitude"></b>
+            </label>
+          </div>
+          <input type="hidden" name="latitude" value="0" />
+        </div>
+
+        <div class="form-group">
+          <label class="col-lg-3 col-md-2 col-sm-2 col-xs-4 control-label">Longitud:</label>
+          <div class="col-lg-2 col-md-2 col-sm-2 col-xs-8">
+            <label class="control-label">
+              <b class="text-longitude"></b>
+            </label>
+          </div>
+          <input type="hidden" name="longitude" value="0" />
+        </div>
+        
+        <div class="form-group">
+          <label class="col-lg-3 col-md-2 col-sm-2 col-xs-12 control-label">Radio de búsqueda (metros):</label>
+          <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+            <div class="bs-component">
+              <input name="distance" class="form-control ui-spinner-input" type="number" />
+            </div>
+          </div>
+        </div>
+
+        <div class="text-right">
+          <input type="submit" class="button btn-primary" value="Buscar"></input>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="panel">
+  <div class="panel-body">
+    <div id="map" class="map"></div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-8 col-md-offset-4">
+    <h6> Ambienta2MX - Instituto Politécnico Nacional </h6> 
+  </div>
+</div>
+
+<div class="row" id="detailedPollutionInformation">
+</div>
+
+<div id="chartContainer" class="row">
+  <div class="col-md-8 col-md-offset-2">
+    
+  </div>
+</div>
+
