@@ -48,9 +48,7 @@ module.exports = (function(){
     console.log(data);
     drawHeatMap(lista);
     showWeatherInfoModal();
-    /*WeatherView.render(placeInformation);*/
-    /*drawHeatMap(data);
-    getTemperatureChart(data);*/
+    showMarker();    
   };
   
   var failure = function(data){
@@ -70,6 +68,10 @@ module.exports = (function(){
     $(selectors.latitudeInput).val(WeatherConf.initialLatitude);
     $(selectors.longitudeInput).val(WeatherConf.initialLongitude);
 
+    showMarker();
+  };
+
+  var showMarker = function(){
     var currentMarker = new google.maps.Marker({
       position: {lat: 19.381836, lng: -99.1372371},
       map: window.globalMap,
@@ -83,8 +85,7 @@ module.exports = (function(){
       $(selectors.latitudeInput).val(evt.latLng.lat().toFixed(6));
       $(selectors.longitudeInput).val(evt.latLng.lng().toFixed(6));
     });
-
-  };
+  }
 
   var drawHeatMap = function (data) {
     window.globalMap = MapsManagement.createMap();

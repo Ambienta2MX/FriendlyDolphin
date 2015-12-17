@@ -46,6 +46,7 @@ module.exports = (function(){
     lista.push(data); 
     drawHeatMap(lista); 
     showPollutionInfoModal();
+    showMarker();
   };
   
   var drawHeatMap = function (data) {
@@ -90,6 +91,10 @@ module.exports = (function(){
     $(selectors.latitudeInput).val(settings.initialLatitude);
     $(selectors.longitudeInput).val(settings.initialLongitude);
 
+    showMarker();
+  };
+
+  var showMarker = function(){
     var currentMarker = new google.maps.Marker({
       position: {lat: 19.381836, lng: -99.1372371},
       map: window.globalMap,
@@ -103,8 +108,7 @@ module.exports = (function(){
       $(selectors.latitudeInput).val(evt.latLng.lat().toFixed(6));
       $(selectors.longitudeInput).val(evt.latLng.lng().toFixed(6));
     });
-
-  };
+  }
 
   return{
     start:start
