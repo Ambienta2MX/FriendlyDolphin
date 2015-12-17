@@ -9,7 +9,6 @@ module.exports = (function(){
   
   var selectors = {
     searchForm:'form[name=searchForm]',
-    searchInput:'input[name=search]',
     body:'body',
     leftToggleButton:'#toggle_sidemenu_l',
     leftMenu:'.sidebar-menu li a.accordion-toggle'
@@ -99,7 +98,7 @@ module.exports = (function(){
   };
 
   var bindEvents = function(){
-    //$(selectors.searchForm).on('submit',searchWeatherByName); 
+    $(selectors.searchForm).on('submit',searchWeatherByName); 
     $(selectors.leftToggleButton).on('click',sidebarLeftToggle);
     $(selectors.leftMenu).on('click',leftMenuToggle);
   };
