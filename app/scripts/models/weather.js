@@ -15,6 +15,7 @@ var Weather = {
  pressure:'',
  provider:[],
  fullName:'',
+ location:{},
   
   create:function(data){
     return $.extend({},this,data);
