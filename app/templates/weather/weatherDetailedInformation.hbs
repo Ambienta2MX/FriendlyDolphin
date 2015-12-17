@@ -31,3 +31,59 @@
     </div>
   </div>
 </div>
+
+<div id="modal-panel" class="popup-basic bg-none mfp-with-anim mfp-hide">
+  <div class="panel">
+    <div class="panel-heading">
+      <span class="panel-icon">
+        
+      </span>
+      <span class="panel-title">
+        Información climatológica
+      </span>
+    </div>
+    <div class="panel-body">
+      <table class="table table-bordered mbn">
+        <thead>
+          <tr>
+            <th colspan="2">Variables </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><label>Descripción</label></td>
+            <td>{{description}}</td>
+          </tr>
+    
+          <tr>
+            <td><label>Temperatura</label></td>
+            <td>{{temperature}} ºC</td>
+          </tr>
+          
+          <tr>
+            <td><label>Humedad</label></td>
+            <td>{{humidity}}% HR</td>
+          </tr>
+          
+          <tr>
+            <td><label>Presión</label></td>
+            <td>{{pressure}} hP</td>
+          </tr>
+          
+          <tr>
+            <td><label>Proveedores</label></td>
+            <td>
+              <ul>
+              {{#each provider}}
+                <li>{{this}}</li>
+              {{/each}}
+              </ul>
+            </td>
+          </tr>
+
+        </tbody>
+      </table>
+      
+    </div><!--ENDOF PANEL-BODY -->
+  </div>
+</div>
