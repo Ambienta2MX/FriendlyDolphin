@@ -9,7 +9,8 @@
     "nvd3": "~1.8.1",
     "director": "~1.2.8",
     "rsvp.js": "rsvp#~3.1.0",
-    "Chart.js": "~1.0.2"
+    "Chart.js": "~1.0.2",
+    "magnific-popup": "~1.0.0"
   },
   "overrides": {
     "font-awesome": {
