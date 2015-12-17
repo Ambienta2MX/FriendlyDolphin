@@ -14,6 +14,7 @@
     <!-- build:css styles/vendor.css -->
     <!-- bower:css -->
     <link rel="stylesheet" href="/bower_components/nvd3/build/nv.d3.css" />
+    <link rel="stylesheet" href="/bower_components/magnific-popup/dist/magnific-popup.css" />
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -33,13 +34,13 @@
     <![endif]-->
     <header class="navbar navbar-fixed-top navbar-shadow bg-dark">
       <div class="navbar-branding dark bg-dark">
-        <a class="navbar-brand" href="dashboard.html"><b>Friendly Dolphin</b></a>
+        <a class="navbar-brand" href="#/"><b>Friendly Dolphin</b></a>
         <span id="toggle_sidemenu_l" class="ad ad-lines"></span>
       </div>
 
-      <form class="navbar-form navbar-left navbar-search alt" role="search">
+      <form name="searchForm" class="navbar-form navbar-left navbar-search alt" role="search">
         <div class="form-group">
-          <input type="text" class="form-control" placeholder="Buscar.." value="" />
+          <input type="text" name="name" class="form-control" placeholder="Buscar.." value="" />
         </div>
       </form>
     </header> 
@@ -82,7 +83,7 @@
             </li>
             
             <li class="crumb-link">
-              <a href="index.html">Dashboard</a>
+              <a href="#/">Dashboard</a>
             </li>
           </ol>
         </div>
@@ -115,6 +116,7 @@
     <script src="/bower_components/director/build/director.js"></script>
     <script src="/bower_components/rsvp.js/rsvp.js"></script>
     <script src="/bower_components/Chart.js/Chart.js"></script>
+    <script src="/bower_components/magnific-popup/dist/jquery.magnific-popup.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
     
