@@ -101,15 +101,11 @@ module.exports = (function(){
     window.globalMap = MapsManagement.createMap();
     var heatmapData = [],
         coordinates;    
-    for(var i=0; i < data.weathers.length; i++) {      
-      console.log(data.weathers[i]);
-      coordinates = data.weathers[i].location.coordinates;
-      console.log(coordinates);
+    for(var i=0; i < data.weathers.length; i++) {            
+      coordinates = data.weathers[i].location.coordinates;      
       var googleMapsPoint = new google.maps.LatLng(coordinates[1], coordinates[0]);
       heatmapData.push(googleMapsPoint);
-    }
-    console.log(heatmapData);
-    console.log(heatmapData);
+    }    
     if(window.heatMap) {
       window.heatMap.setMap(null); 
     } else {
