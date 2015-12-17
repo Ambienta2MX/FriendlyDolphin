@@ -13,7 +13,7 @@ var Weather = {
  visibility:'',
  cloudCover:'',
  pressure:'',
- location:null,
+ provider:[],
  fullName:'',
   
   create:function(data){
@@ -24,7 +24,7 @@ var Weather = {
     var _self = Weather.create({});
 
     Object.keys(_self).forEach(function(key){
-      if(typeof _self[key] != 'function'){
+      if(typeof _self[key] !== 'function'){
         _self[key] = data.weather[key];
       }
     });
@@ -39,17 +39,11 @@ var Weather = {
         type:'GET',
         data:params.data,
         datatype:'json',
-        contentType:'application/json; charset=utf-8',
         crossDomain:true,
         mozSystem: true
       })
       .done(function(response){
-        var model = {weathers:[]};
-        response.forEach(function(item){
-          var weather = Weather.deserialize({weather:item}); 
-          model.weathers.push(weather);
-        });
-        resolve(model); 
+        resolve(response); 
       })
       .fail(function(response){
         reject(response); 
