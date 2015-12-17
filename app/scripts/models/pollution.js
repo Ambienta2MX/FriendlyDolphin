@@ -56,10 +56,10 @@ var Pollution = {
         mozSystem: true
       })
       .done(function(response){
-        var model = {weathers:[]};
+        var model = {pollutions:[]};
         response.forEach(function(item){
-          var weather = Weather.deserialize({weather:item}); 
-          model.weathers.push(weather);
+          var pollution = Pollution.deserialize({pollution:item}); 
+          model.pollutions.push(pollution);
         });
         resolve(model); 
       })
