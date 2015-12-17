@@ -1,0 +1,55 @@
+<div id="modal-panel" class="popup-basic bg-none mfp-with-anim mfp-hide">
+  <div class="panel">
+    <div class="panel-heading">
+      <span class="panel-icon">
+        
+      </span>
+      <span class="panel-title">
+        Información de contaminación del Aire
+      </span>
+    </div>
+    <div class="panel-body">
+      <table class="table table-bordered mbn">
+        <thead>
+          <tr>
+            <th colspan="2">Variables </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><label>Calidad del aire</label></td>
+            <td>{{airQualityDescription}}</td>
+          </tr>
+    
+          <tr>
+            <td><label>Monoxido de Carbono</label></td>
+            <td>{{carbonMonoxide}}</td>
+          </tr>
+          
+          <tr>
+            <td><label></label></td>
+            <td>{{sulphurDiode}}</td>
+          </tr>
+          
+          <tr>
+            <td><label></label></td>
+            <td>{{nitrogenDioxide}}</td>
+          </tr>
+          
+          <tr>
+            <td><label>Proveedores</label></td>
+            <td>
+              <ul>
+              {{#each provider}}
+                <li>{{this}}</li>
+              {{/each}}
+              </ul>
+            </td>
+          </tr>
+
+        </tbody>
+      </table>
+      
+    </div><!--ENDOF PANEL-BODY -->
+  </div>
+</div>
