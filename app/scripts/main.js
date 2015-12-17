@@ -2,6 +2,7 @@
 
 var WeatherController = require('./controllers/weather_controller');
 var HomeController = require('./controllers/home_controller');
+var PollutionController = require('./controllers/pollution_controller');
 
 var Application = (function(){
 
@@ -9,6 +10,9 @@ var Application = (function(){
     var router = new Router({
       '/weather':{
         on:WeatherController.start
+      },
+      '/pollution':{
+        on:PollutionController.start
       }
     }).configure({recurse:'backward'});
 
